@@ -1,0 +1,128 @@
+/* --- Global Styles --- */
+* {
+    /* `*` applies to all elements */
+    font-family: "0xProto Nerd Font", FontAwesome, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* --- The Bar --- */
+window#waybar {
+    /* The bar itself */
+    background-color: rgba(20, 20, 20, 0.85); /* Dark gray background */
+    color: #d4d4d4; /* Light gray text */
+    border-radius: 2px;
+    margin: 5px;
+}
+
+/* --- Workspaces --- */
+#workspaces button {
+    /* Each workspace button */
+    background: transparent;
+    color: #a0a0a0; /* Medium gray for inactive */
+    border: none;
+    border-radius: 2px;
+    padding: 2px 8px;
+    margin: 4px 2px;
+}
+
+#workspaces button.active {
+    /* The active workspace */
+    background: #ffd700; /* Yellow */
+    color: #1e1e1e; /* Dark text for contrast */
+}
+
+#workspaces button.urgent {
+    /* Workspace with an urgent hint */
+    background-color: #ff4136; /* Red */
+    color: #1e1e1e;
+}
+
+#workspaces button:hover {
+    /* Mouse over any workspace */
+    background: #f0e68c; /* Lighter yellow */
+    color: #1e1e1e;
+}
+
+/* --- Window Title --- */
+#window {
+    color: #d4d4d4;
+    padding: 0 10px;
+}
+
+/* --- Clock --- */
+#clock {
+    color: #ffd700; /* Yellow */
+    padding: 0 10px;
+}
+
+/* --- General Module Styling --- */
+/* This styles all modules in the right-hand block */
+#pulseaudio,
+#network,
+#disk,
+#cpu,
+#memory,
+#battery,
+#tray,
+#language {
+    padding: 0 5px; /* Add some space around the modules */
+    margin: 4px 2px; /* Small margin between modules */
+    /* background-color: #222222; Dark gray "surface" */
+    color: #d4d4d4; /* Light gray text */
+    border-radius: 2px; /* Rounded corners for each module */
+}
+
+/* --- Specific Module Colors --- */
+
+#pulseaudio {
+    color: #d4d4d4;
+}
+#pulseaudio.muted {
+    color: #ff4136; /* Red when muted */
+}
+
+#pulseaudio#microphone {
+    /* Use a neutral or system color */
+    color: #98fb98; /* Example: Pale Green */
+    background-color: #333333;
+    border-radius: 8px;
+}
+
+#network {
+    color: #2ecc40; /* Green for connected */
+}
+#network.disconnected {
+    color: #ff4136; /* Red when disconnected */
+}
+
+#cpu {
+    color: #ffd700; /* Yellow */
+}
+
+#memory {
+    color: #d4d4d4;
+}
+
+#battery {
+    color: #2ecc40; /* Green */
+}
+#battery.charging,
+#battery.plugged {
+    color: #2ecc40;
+}
+#battery.warning {
+    color: #ffd700; /* Yellow for warning */
+}
+#battery.critical {
+    color: #ff4136; /* Red for critical */
+}
+
+#language {
+    color: #d4d4d4;
+}
+
+#tray {
+    background-color: transparent; /* Make tray background same as bar */
+}

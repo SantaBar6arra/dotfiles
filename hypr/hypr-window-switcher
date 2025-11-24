@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+clients=$(hyprctl clients -j 2>/dev/null | jq -r '.[] | "\(.address)\t\(.appId // .class // "unknown") - \(.title // "untitled")"')
+[ -z "$clients" ] && exit 1
+
+chosen=$(printf '%s\n' "$clients" | wofi -d -i -p "Windows" | awk -F $'\t' '{print $1}')
+[ -n "$chosen" ] && hyprctl dispatch focuswindow address:$chosen

@@ -1,0 +1,169 @@
+{
+	// Sets the bar's position. "top" (default), "bottom", "left", "right"
+	"position": "top",
+	// Height of the bar
+	"height": 35,
+	// Spacing between modules
+	"spacing": 5,
+
+	// --- MODULES: LEFT ---
+	"modules-left": ["hyprland/workspaces", "hyprland/window"],
+
+	// --- MODULES: CENTER ---
+	"modules-center": ["clock"],
+
+	// --- MODULES: RIGHT ---
+	// Added 'pulseaudio#microphone' and 'disk'
+	"modules-right": [
+		"pulseaudio",
+		"pulseaudio#microphone",
+		"network",
+		"disk",
+		"cpu",
+		"memory",
+		"battery",
+		"tray",
+		"hyprland/language"
+	],
+
+	// --- MODULE DEFINITIONS ---
+	"hyprland/workspaces": {
+		"format": "{icon}",
+		"on-click": "activate",
+		"format-icons": {
+			"1": "1",
+			"2": "2",
+			"3": "3",
+			"4": "4",
+			"5": "5",
+			"6": "6",
+			"7": "7",
+			"8": "8",
+			"9": "9",
+			"10": "10",
+			"urgent": "!",
+			"default": ""
+		},
+		"persistent-workspaces": {
+			"1": []
+		}
+	},
+
+	"hyprland/window": {
+		"format": "{}",
+		"max-length": 35,
+		"rewrite": {
+			"(.*) - Kitty": "Kitty",
+			"(.*) - Visual Studio Code": "VS Code"
+		}
+	},
+
+	"clock": {
+		"format": " {:%A, %d %B %Y - %H:%M:%S}",
+		"interval": 1,
+		"rotate": 0,
+		"tooltip-format": "<big>{:%d-%m-%Y}</big>\n<tt>{calendar}</tt>",
+
+		"calendar": {
+			"mode": "year",
+			"mode-mon-col": 3,
+			"weeks-pos": "right",
+			"on-scroll": 1,
+			"format": {
+				"months": "<span color='#ffead3'><b>{}</b></span>",
+				"days": "<span color='#ffead3'><b>{}</b></span>",
+				"weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+				"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+				"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+			}
+		},
+		"actions": {
+			"on-click-right": "mode",
+			"on-scroll-down": "tz_up",
+			"on-scroll-up": "tz_down",
+			"on-scroll-down": "shift_up",
+			"on-scroll-up": "shift_down"
+		}
+	},
+
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-muted": " Muted",
+		"on-click": "pavucontrol",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ["", "", ""]
+		}
+	},
+
+	// --- NEW: Microphone Input Level ---
+	"pulseaudio#microphone": {
+		"format": " {volume}%",
+		"format-muted": " Muted",
+		// Opens the Input Devices tab in pavucontrol
+		"on-click": "pavucontrol --tab=4",
+		"format-icons": {
+			"default": ["", ""]
+		},
+		"tooltip": true
+	},
+	// --- END NEW MODULE ---
+
+	"network": {
+		"format-wifi": " {essid}",
+		"format-ethernet": "󰈁 Connected",
+		"format-disconnected": "󰈂 Disconnected",
+		"tooltip-format": "{ifname} via {gwaddr} ",
+		"on-click": "nm-connection-editor" // Make sure this is installed
+	},
+
+	// --- NEW: Disk Usage ---
+	"disk": {
+		// Checks the root partition (/)
+		"path": "/",
+		"format": " {percentage_used}%",
+		"tooltip": true
+	},
+	// --- END NEW MODULE ---
+
+	"cpu": {
+		"format": " {usage}%",
+		"tooltip": true,
+		"on-click": "htop" // Or your preferred task manager
+	},
+
+	"memory": {
+		"format": " {}%",
+		"on-click": "htop"
+	},
+
+	"battery": {
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity}%",
+		"format-charging": " {capacity}%",
+		"format-plugged": " {capacity}%",
+		"format-alt": "{icon} {time}",
+		"format-icons": ["", "", "", "", ""]
+	},
+
+	"tray": {
+		"icon-size": 18,
+		"spacing": 5
+	},
+
+	"hyprland/language": {
+		"format": "{}",
+		"format-en": "EN",
+		"format-uk": "UA",
+		"format-ru": "RU",
+		"on-click": "hyprctl switchxkblayout current next"
+	}
+}
