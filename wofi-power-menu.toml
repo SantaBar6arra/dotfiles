@@ -1,0 +1,8 @@
+[wofi]
+extra-args = "--lines=6"
+
+[menu.logout]
+cmd = "hyperctl dispatch exit"
+
+[menu.lock-screen]
+cmd = "hyprlock"
