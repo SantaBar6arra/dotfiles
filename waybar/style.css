@@ -1,128 +1,154 @@
 /* --- Global Styles --- */
 * {
-    /* `*` applies to all elements */
-    font-family: "0xProto Nerd Font", FontAwesome, sans-serif;
-    font-size: 14px;
-    font-weight: bold;
+    font-family: "0xProto Nerd Font", "0xProto", monospace, sans-serif;
+    font-size: 13px;
+    font-weight: normal;
     font-style: italic;
 }
 
 /* --- The Bar --- */
 window#waybar {
-    /* The bar itself */
-    background-color: rgba(20, 20, 20, 0.85); /* Dark gray background */
-    color: #d4d4d4; /* Light gray text */
-    border-radius: 2px;
+    /*  make color transparent a little bit */
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #C5C8C6; /* Foreground color */
+    border: none;
     margin: 5px;
+    padding: 0;
 }
 
 /* --- Workspaces --- */
+#workspaces {
+    margin: 0;
+    padding: 0;
+}
+
 #workspaces button {
-    /* Each workspace button */
     background: transparent;
-    color: #a0a0a0; /* Medium gray for inactive */
+    color: #707880; /* Disabled color for empty workspaces */
     border: none;
+    border-bottom: 3px solid transparent;
+    padding: 0 1px;
+    margin: 0 1px;
+    min-width: 24px;
+    /* max-width: 24px; */
     border-radius: 2px;
-    padding: 2px 8px;
-    margin: 4px 2px;
 }
 
 #workspaces button.active {
-    /* The active workspace */
-    background: #ffd700; /* Yellow */
-    color: #1e1e1e; /* Dark text for contrast */
+    background: #222222; /* Background-alt */
+    color: #C5C8C6; /* Foreground */
+    border-bottom: 3px solid #ede43d; /* Primary yellow underline */
 }
 
 #workspaces button.urgent {
-    /* Workspace with an urgent hint */
-    background-color: #ff4136; /* Red */
-    color: #1e1e1e;
+    background-color: #A54242; /* Alert color */
+    color: #C5C8C6;
 }
 
 #workspaces button:hover {
-    /* Mouse over any workspace */
-    background: #f0e68c; /* Lighter yellow */
-    color: #1e1e1e;
+    background: #222222;
+    color: #C5C8C6;
 }
 
 /* --- Window Title --- */
 #window {
-    color: #d4d4d4;
+    color: #C5C8C6;
     padding: 0 10px;
+    margin: 0 4px;
 }
 
-/* --- Clock --- */
+/* --- Clock - kept as specified --- */
 #clock {
-    color: #ffd700; /* Yellow */
-    padding: 0 10px;
+    color: #ede43d; /* Primary yellow */
+    padding: 0 8px;
+    margin: 0 4px;
+    font-style: italic;
 }
 
-/* --- General Module Styling --- */
-/* This styles all modules in the right-hand block */
-#pulseaudio,
-#network,
+/* --- Separator between modules --- */
 #disk,
-#cpu,
+#pulseaudio,
 #memory,
+#cpu,
+#network,
+#custom-clipboard,
 #battery,
-#tray,
+#keyboard-state label.locked,
 #language {
-    padding: 0 5px; /* Add some space around the modules */
-    margin: 4px 2px; /* Small margin between modules */
-    /* background-color: #222222; Dark gray "surface" */
-    color: #d4d4d4; /* Light gray text */
-    border-radius: 2px; /* Rounded corners for each module */
+    padding: 0 7px;
+    margin: 5px 0;
+    color: #C5C8C6;
+    border-left: 1px solid #707880;
 }
 
-/* --- Specific Module Colors --- */
+#disk:first-child,
+#pulseaudio:first-child {
+    border-left: none;
+}
 
+/* --- Module Specific Styles --- */
+
+/* Filesystem/Disk */
+#disk {
+    color: #C5C8C6;
+}
+
+/* Pulseaudio */
 #pulseaudio {
-    color: #d4d4d4;
+    color: #C5C8C6;
 }
+
 #pulseaudio.muted {
-    color: #ff4136; /* Red when muted */
+    color: #707880; /* Disabled color */
 }
 
-#pulseaudio#microphone {
-    /* Use a neutral or system color */
-    color: #98fb98; /* Example: Pale Green */
-    background-color: #333333;
-    border-radius: 8px;
-}
-
-#network {
-    color: #2ecc40; /* Green for connected */
-}
-#network.disconnected {
-    color: #ff4136; /* Red when disconnected */
-}
-
-#cpu {
-    color: #ffd700; /* Yellow */
-}
-
-#memory {
-    color: #d4d4d4;
-}
-
-#battery {
-    color: #2ecc40; /* Green */
-}
-#battery.charging,
-#battery.plugged {
-    color: #2ecc40;
-}
-#battery.warning {
-    color: #ffd700; /* Yellow for warning */
-}
-#battery.critical {
-    color: #ff4136; /* Red for critical */
-}
-
+/* Language/Keyboard */
 #language {
-    color: #d4d4d4;
+    color: #ede43d; /* Primary color */
 }
 
-#tray {
-    background-color: transparent; /* Make tray background same as bar */
+/* Caps Lock Warning */
+#keyboard-state label.locked {
+    background-color: #ede43d;
+    color: #222222;
+    font-weight: bold;
+}
+
+#keyboard-state {
+    padding: 0;
+    margin: 0;
+    border-left: none;
+}
+
+#keyboard-state {
+    color: transparent;
+    animation: none;
+}
+
+#memory, #cpu, #network, #custom-clipboard, #battery {
+    color: #C5C8C6;
+}
+
+#network.disconnected {
+    color: #707880; /* Disabled color */
+}
+
+#custom-clipboard:hover {
+    color: #ede43d;
+}
+
+#battery.charging {
+    color: #8ABEB7; /* Secondary color */
+}
+
+#battery.warning:not(.charging) {
+    color: #ede43d; /* Primary/warning yellow */
+}
+
+#battery.critical:not(.charging) {
+    color: #A54242; /* Alert red */
+}
+
+.modules-right > * {
+    font-style: italic;
 }
